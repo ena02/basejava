@@ -1,3 +1,8 @@
+package com.urise.webapp;
+
+import com.urise.webapp.resume.Resume;
+import com.urise.webapp.storage.ArrayStorage;
+
 /**
  * Test for your ArrayStorage implementation
  */
@@ -37,3 +42,4 @@ public class MainTestArrayStorage {
         }
     }
 }
+

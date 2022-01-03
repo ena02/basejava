@@ -1,9 +1,9 @@
+package com.urise.webapp.storage;
+
+import com.urise.webapp.resume.Resume;
+
 import java.util.Objects;
 
-
-/**
- * Array based storage for Resumes
- */
 public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
     private int size = 0;

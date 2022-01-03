@@ -1,3 +1,5 @@
+package com.urise.webapp.resume;
+
 /**
  * Initial resume class
  */
@@ -19,3 +21,4 @@ public class Resume {
         this.uuid = uuid;
     }
 }
+
