@@ -13,9 +13,26 @@ public class ArrayStorage {
         size = 0;
     }
 
+    public void update(Resume r) {
+        if (isPresent(r.getUuid())) {
+            for (int i = 0; i < size; i++) {
+                if (storage.equals(r.getUuid())) {
+                    storage[i] = r;
+                }
+            }
+        } else {
+            System.out.println("Storage don't have same resume!");
+        }
+    }
+
     public void save(Resume r) {
-        storage[size] = r;
-        size++;
+        if (!isPresent(r.getUuid())) {
+            storage[size] = r;
+            size++;
+        } else {
+            System.out.println("This resume already exist in storage!");
+        }
+
     }
 
     public Resume get(String uuid) {
@@ -29,13 +46,19 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        Resume[] cResume = new Resume[10000];
-        for (int i = 0; i < size; i++) {
-            if (!Objects.equals(storage[i].getUuid(), uuid))
-                cResume[i] = storage[i];
+        if (isPresent(uuid)) {
+            for (int i = 0; i < size; i++) {
+                if (storage.equals(uuid)) {
+                    storage[i] = storage[size - 1];
+                    storage[size - 1] = null;
+                }
+            }
+
+            size--;
+        } else {
+            System.out.println("Storage don't have same resume!");
         }
-        storage = cResume;
-        size--;
+
     }
 
     /**
@@ -51,5 +74,14 @@ public class ArrayStorage {
 
     public int size() {
         return size;
+    }
+
+    public boolean isPresent(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (storage.equals(uuid)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

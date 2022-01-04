@@ -13,6 +13,11 @@ public class Resume {
         return uuid;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.uuid == obj;
+    }
+
     public String getUuid() {
         return uuid;
     }
