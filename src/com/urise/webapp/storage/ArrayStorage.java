@@ -5,38 +5,45 @@ import com.urise.webapp.model.Resume;
 import java.util.Objects;
 
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
-    private int size = 0;
+    private int currentSize = 0;
+    private int maxSize = 10000;
+    private Resume[] storage = new Resume[maxSize];
+
 
     public void clear() {
         storage = null;
-        size = 0;
+        currentSize = 0;
     }
 
     public void update(Resume r) {
         if (isPresent(r.getUuid())) {
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < currentSize; i++) {
                 if (storage.equals(r.getUuid())) {
                     storage[i] = r;
                 }
             }
         } else {
-            System.out.println("Storage don't have same resume!");
+            System.out.println("ERROR: Storage don't have same resume!");
         }
     }
 
     public void save(Resume r) {
         if (!isPresent(r.getUuid())) {
-            storage[size] = r;
-            size++;
+            if (currentSize < maxSize) {
+                storage[currentSize] = r;
+                currentSize++;
+            } else {
+                System.out.println("ERROR: Storage overflow!");
+            }
+
         } else {
-            System.out.println("This resume already exist in storage!");
+            System.out.println("ERROR: This resume already exist in storage!");
         }
 
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < currentSize; i++) {
             if (Objects.equals(storage[i].getUuid(), uuid)) {
                 return storage[i];
             }
@@ -47,16 +54,16 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         if (isPresent(uuid)) {
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < currentSize; i++) {
                 if (storage.equals(uuid)) {
-                    storage[i] = storage[size - 1];
-                    storage[size - 1] = null;
+                    storage[i] = storage[currentSize - 1];
+                    storage[currentSize - 1] = null;
                 }
             }
 
-            size--;
+            currentSize--;
         } else {
-            System.out.println("Storage don't have same resume!");
+            System.out.println("ERROR: Storage don't have same resume!");
         }
 
     }
@@ -65,20 +72,20 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] resume = new Resume[size];
-        for (int i = 0; i < size; i++) {
+        Resume[] resume = new Resume[currentSize];
+        for (int i = 0; i < currentSize; i++) {
             resume[i] = storage[i];
         }
         return resume;
     }
 
     public int size() {
-        return size;
+        return currentSize;
     }
 
     public boolean isPresent(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (storage.equals(uuid)) {
+        for (int i = 0; i < currentSize; i++) {
+            if (storage[i].getUuid() == uuid) {
                 return true;
             }
         }
