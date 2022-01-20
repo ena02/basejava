@@ -7,7 +7,7 @@ import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public abstract class AbstractArrayStorage implements Storage{
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected int currentSize = 0;
     protected static final int MAX_SIZE = 10000;
     protected final Resume[] storage = new Resume[MAX_SIZE];
@@ -40,7 +40,7 @@ public abstract class AbstractArrayStorage implements Storage{
         int ind = getIndex(r.getUuid());
         if (ind >= 0) {
             throw new ExistStorageException(r.getUuid());
-        } else if (currentSize == storage.length) {
+        } else if (currentSize == MAX_SIZE) {
             throw new StorageException("ERROR: Storage overflow!", r.getUuid());
         } else {
             insertElement(r, ind);
