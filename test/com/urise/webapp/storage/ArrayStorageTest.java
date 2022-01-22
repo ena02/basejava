@@ -1,18 +1,13 @@
 package com.urise.webapp.storage;
 
-import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
-
-public class ArrayStorageTest extends AbstractArrayStorageTest {
+public class ArrayStorageTest extends AbstractStorageTest {
 
     public ArrayStorageTest() {
         super(new ArrayStorage());
     }
 
-    @Test
+
+    /*@Test
     public void fillDeletedElement() {
     }
 
@@ -22,5 +17,5 @@ public class ArrayStorageTest extends AbstractArrayStorageTest {
 
     @Test
     public void testGetIndex() {
-    }
+    }*/
 }

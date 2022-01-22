@@ -5,9 +5,9 @@ import com.urise.webapp.model.Resume;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapStorage extends AbstractStorage {
+public abstract class MapStorage extends AbstractStorage {
 
-    protected final Map<String, Resume> storage = new HashMap<>();
+    /*protected final Map<String, Resume> storage = new HashMap<>();
 
     public int size() {
         return super.size();
@@ -41,5 +41,5 @@ public class MapStorage extends AbstractStorage {
 
     public Resume get(String uuid) {
         return super.get(uuid);
-    }
+    }*/
 }
